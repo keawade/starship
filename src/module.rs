@@ -13,6 +13,7 @@ pub const ALL_MODULES: &[&str] = &[
     "character",
     "cmd_duration",
     "directory",
+    "dotnet",
     "env_var",
     "git_branch",
     "git_state",
