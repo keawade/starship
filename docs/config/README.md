@@ -1,9 +1,7 @@
 # Configuration
 
-::: tip
-🔥 Configuration is currently being worked on.
-Many new configuration options will be available in coming releases.
-:::
+::: tip 🔥 Configuration is currently being worked on. Many new configuration options will be
+available in coming releases. :::
 
 To get started configuring starship, create the following file: `~/.config/starship.toml`.
 
@@ -28,12 +26,15 @@ disabled = true
 
 ### Terminology
 
-**Module**: A component in the prompt giving information based on contextual information from your OS. For example, the "nodejs" module shows the version of NodeJS that is currently installed on your computer, if your current directory is a NodeJS project.
+**Module**: A component in the prompt giving information based on contextual information from your
+OS. For example, the "nodejs" module shows the version of NodeJS that is currently installed on your
+computer, if your current directory is a NodeJS project.
 
-**Segment**: Smaller sub-components that compose a module. For example, the "symbol" segment in the "nodejs" module contains the character that is shown before the version number (⬢ by default).
+**Segment**: Smaller sub-components that compose a module. For example, the "symbol" segment in the
+"nodejs" module contains the character that is shown before the version number (⬢ by default).
 
-Here is the representation of the node module. In the following example, "symbol" and "version"
-are segments within it. Every module also has a prefix and suffix that are the default terminal color.
+Here is the representation of the node module. In the following example, "symbol" and "version" are
+segments within it. Every module also has a prefix and suffix that are the default terminal color.
 
 ```
 [prefix]      [symbol]     [version]    [suffix]
@@ -42,7 +43,10 @@ are segments within it. Every module also has a prefix and suffix that are the d
 
 ### Style Strings
 
-Most modules in starship allow you to configure their display styles. This is done with an entry (usually called `style`) which is a string specifying the configuration. Here are some examples of style strings along with what they do. For details on the full syntax, consult the [advanced config guide](/advanced-config/).
+Most modules in starship allow you to configure their display styles. This is done with an entry
+(usually called `style`) which is a string specifying the configuration. Here are some examples of
+style strings along with what they do. For details on the full syntax, consult the
+[advanced config guide](/advanced-config/).
 
 - `"fg:green bg:blue"` sets green text on a blue background
 - `"bg:blue fg:bright-green"` sets bright green text on a blue background
@@ -51,7 +55,10 @@ Most modules in starship allow you to configure their display styles. This is do
 - `"bold italic fg:purple"` sets bold italic purple text
 - `""` explicitly disables all styling
 
-Note that what styling looks like will be controlled by your terminal emulator. For example, some terminal emulators will brighten the colors instead of bolding text, and some color themes use the same values for the normal and bright colors. Also, to get italic text, your terminal must support italics.
+Note that what styling looks like will be controlled by your terminal emulator. For example, some
+terminal emulators will brighten the colors instead of bolding text, and some color themes use the
+same values for the normal and bright colors. Also, to get italic text, your terminal must support
+italics.
 
 ## Prompt
 
@@ -77,7 +84,8 @@ prompt_order=["rust","line_break","package","line_break","character"]
 
 ### Default Prompt Order
 
-The default `prompt_order` is used to define the order in which modules are shown in the prompt, if empty or no `prompt_order` is provided. The default is as shown:
+The default `prompt_order` is used to define the order in which modules are shown in the prompt, if
+empty or no `prompt_order` is provided. The default is as shown:
 
 ```toml
 prompt_order = [
@@ -88,12 +96,13 @@ prompt_order = [
     "git_state",
     "git_status",
     "package",
-    "nodejs",
-    "ruby",
-    "rust",
-    "python",
+    "dotnet",
     "golang",
     "java",
+    "nodejs",
+    "python",
+    "ruby",
+    "rust",
     "nix_shell",
     "aws",
     "env_var",
@@ -102,14 +111,13 @@ prompt_order = [
     "jobs",
     "battery",
     "time",
-    "character",
+    "character"
 ]
 ```
 
 ## AWS
 
-The `aws` module shows the current AWS profile. This is based on the
-`AWS_PROFILE` env var.
+The `aws` module shows the current AWS profile. This is based on the `AWS_PROFILE` env var.
 
 ### Options
 
@@ -117,7 +125,7 @@ The `aws` module shows the current AWS profile. This is based on the
 | ---------- | --------------- | ---------------------------------------------------- |
 | `disabled` | `false`         | Disables the `AWS` module                            |
 | `style`    | `"bold yellow"` | The style used for the module                        |
-| `symbol`   | `"☁️ "`          | The symbol before displaying the current AWS profile |
+| `symbol`   | `"☁️ "`         | The symbol before displaying the current AWS profile |
 
 ### Example
 
@@ -131,8 +139,8 @@ symbol = "🅰 "
 
 ## Battery
 
-The `battery` module shows how charged the device's battery is and its current charging status.
-The module is only visible when the device's battery is below 10%.
+The `battery` module shows how charged the device's battery is and its current charging status. The
+module is only visible when the device's battery is below 10%.
 
 ### Options
 
@@ -148,11 +156,12 @@ The module is only visible when the device's battery is below 10%.
 <summary>There are also options for some uncommon battery states.</summary>
 
 | Variable         | Description                                         |
-|------------------|-----------------------------------------------------|
+| ---------------- | --------------------------------------------------- |
 | `unknown_symbol` | The symbol shown when the battery state is unknown. |
 | `empty_symbol`   | The symbol shown when the battery state is empty.   |
 
-Note: Battery indicator will be hidden if the status is `unknown` or `empty` unless you specify the option in the config.
+Note: Battery indicator will be hidden if the status is `unknown` or `empty` unless you specify the
+option in the config.
 
 </details>
 
@@ -169,8 +178,8 @@ discharging_symbol = "💀"
 
 ### Battery Display
 
-The `display` configuration option is used to define when the battery indicator should be shown (threshold) and what it looks like (style).
-If no `display` is provided. The default is as shown:
+The `display` configuration option is used to define when the battery indicator should be shown
+(threshold) and what it looks like (style). If no `display` is provided. The default is as shown:
 
 ```toml
 [[battery.display]]
@@ -204,12 +213,12 @@ style = "bold yellow"
 
 ## Character
 
-The `character` module shows a character (usually an arrow) beside where the text
-is entered in your terminal.
+The `character` module shows a character (usually an arrow) beside where the text is entered in your
+terminal.
 
-The character will tell you whether the last command was successful or not. It
-can do this in two ways: by changing color (red/green) or by changing its shape
-(❯/✖). The latter will only be done if `use_symbol_for_status` is set to `true`.
+The character will tell you whether the last command was successful or not. It can do this in two
+ways: by changing color (red/green) or by changing its shape (❯/✖). The latter will only be done if
+`use_symbol_for_status` is set to `true`.
 
 ### Options
 
@@ -236,19 +245,16 @@ use_symbol_for_status = true
 
 ## Command Duration
 
-The `cmd_duration` module shows how long the last command took to execute.
-The module will be shown only if the command took longer than two seconds, or
-the `min_time` config value, if it exists.
+The `cmd_duration` module shows how long the last command took to execute. The module will be shown
+only if the command took longer than two seconds, or the `min_time` config value, if it exists.
 
-::: warning Do not hook the DEBUG trap in Bash
-If you are running Starship in `bash`, do not hook the `DEBUG` trap after running
-`eval $(starship init $0)`, or this module **will** break.
-:::
+::: warning Do not hook the DEBUG trap in Bash If you are running Starship in `bash`, do not hook
+the `DEBUG` trap after running `eval $(starship init $0)`, or this module **will** break. :::
 
 Bash users who need preexec-like functionality can use
-[rcaloras's bash_preexec framework](https://github.com/rcaloras/bash-preexec).
-Simply define the arrays `preexec_functions` and `precmd_functions` before
-running `eval $(starship init $0)`, and then proceed as normal.
+[rcaloras's bash_preexec framework](https://github.com/rcaloras/bash-preexec). Simply define the
+arrays `preexec_functions` and `precmd_functions` before running `eval $(starship init $0)`, and
+then proceed as normal.
 
 ### Options
 
@@ -269,17 +275,14 @@ min_time = 4
 
 ## Directory
 
-The `directory` module shows the path to your current directory, truncated to
-three parent folders. Your directory will also be truncated to the root of the
-git repo that you're currently in.
+The `directory` module shows the path to your current directory, truncated to three parent folders.
+Your directory will also be truncated to the root of the git repo that you're currently in.
 
-When using the fish style pwd option, instead of hiding the path that is
-truncated, you will see a shortened name of each directory based on the number
-you enable for the option.
+When using the fish style pwd option, instead of hiding the path that is truncated, you will see a
+shortened name of each directory based on the number you enable for the option.
 
-For example, given `~/Dev/Nix/nixpkgs/pkgs` where `nixpkgs` is the repo root,
-and the option set to `1`. You will now see `~/D/N/nixpkgs/pkgs`, whereas before
-it would have been `nixpkgs/pkgs`.
+For example, given `~/Dev/Nix/nixpkgs/pkgs` where `nixpkgs` is the repo root, and the option set to
+`1`. You will now see `~/D/N/nixpkgs/pkgs`, whereas before it would have been `nixpkgs/pkgs`.
 
 ### Options
 
@@ -300,7 +303,6 @@ it would have been `nixpkgs/pkgs`.
 
 </details>
 
-
 ### Example
 
 ```toml
@@ -310,10 +312,45 @@ it would have been `nixpkgs/pkgs`.
 truncation_length = 8
 ```
 
+## Dotnet
+
+The `dotnet` module shows the relevant version of the .NET Core SDK for the current directory. If
+the SDK has been pinned in the current directory, the pinned version is shown. Otherwise the module
+shows the latest installed version of the SDK.
+
+This module will only be shown in your prompt when one of the following files are present in the
+current directory: `global.json`, `project.json`, `*.sln`, `*.csproj`, `*.fsproj`, `*.xproj`. You'll
+also need the .NET Core command-line tools installed in order to use it correctly.
+
+Internally, this module uses its own mechanism for version detection. Typically it is twice as fast
+as running `dotnet --version`, but it may show an incorrect version if your .NET project has an
+unusual directory layout. If accuracy is more important than speed, you can disable the mechanism by
+setting `heuristic = false` in the module options.
+
+### Options
+
+| Variable    | Default       | Description                                              |
+| ----------- | ------------- | -------------------------------------------------------- |
+| `symbol`    | `"•NET "`     | The symbol used before displaying the version of dotnet. |
+| `style`     | `"bold blue"` | The style for the module.                                |
+| `heuristic` | `true`        | Use faster version detection to keep starship snappy.    |
+| `disabled`  | `false`       | Disables the `dotnet` module.                            |
+
+### Example
+
+```toml
+# ~/.config/starship.toml
+
+[dotnet]
+symbol = "🥅 "
+style = "green"
+heuristic = false
+```
+
 ## Environment Variable
 
-The `env_var` module displays the current value of a selected environment variable.
-The module will be shown only if any of the following conditions are met:
+The `env_var` module displays the current value of a selected environment variable. The module will
+be shown only if any of the following conditions are met:
 
 - The `variable` configuration option matches an existing environment variable
 - The `variable` configuration option is not defined, but the `default` configuration option is
@@ -367,10 +404,9 @@ truncation_symbol = ""
 
 ## Git State
 
-The `git_state` module will show in directories which are part of a git
-repository, and where there is an operation in progress, such as: _REBASING_,
-_BISECTING_, etc. If there is progress information (e.g., REBASING 3/10),
-that information will be shown too.
+The `git_state` module will show in directories which are part of a git repository, and where there
+is an operation in progress, such as: _REBASING_, _BISECTING_, etc. If there is progress information
+(e.g., REBASING 3/10), that information will be shown too.
 
 ### Options
 
@@ -399,8 +435,7 @@ cherry_pick = "🍒 PICKING"
 
 ## Git Status
 
-The `git_status` module shows symbols representing the state of the repo in your
-current directory.
+The `git_status` module shows symbols representing the state of the repo in your current directory.
 
 ### Options
 
@@ -442,8 +477,8 @@ deleted = "🗑"
 
 ## Golang
 
-The `golang` module shows the currently installed version of Golang.
-The module will be shown if any of the following conditions are met:
+The `golang` module shows the currently installed version of Golang. The module will be shown if any
+of the following conditions are met:
 
 - The current directory contains a `go.mod` file
 - The current directory contains a `go.sum` file
@@ -469,7 +504,6 @@ The module will be shown if any of the following conditions are met:
 [golang]
 symbol = "🏎💨 "
 ```
-
 
 ## Hostname
 
@@ -497,13 +531,11 @@ suffix = "⟫"
 disabled = false
 ```
 
-
 ## Jobs
 
-The `jobs` module shows the current number of jobs running.
-The module will be shown only if there are background jobs running.
-The module will show the number of jobs running if there is more than 1 job, or
-more than the `threshold` config value, if it exists.
+The `jobs` module shows the current number of jobs running. The module will be shown only if there
+are background jobs running. The module will show the number of jobs running if there is more than 1
+job, or more than the `threshold` config value, if it exists.
 
 ### Options
 
@@ -543,11 +575,10 @@ The `line_break` module separates the prompt into two lines.
 disabled = true
 ```
 
-
 ## Nix-shell
 
-The `nix_shell` module shows the nix-shell environment.
-The module will be shown when inside a nix-shell environment.
+The `nix_shell` module shows the nix-shell environment. The module will be shown when inside a
+nix-shell environment.
 
 ### Options
 
@@ -573,19 +604,19 @@ pure_msg = "pure shell"
 
 ## Java
 
-The `java` module shows the currently installed version of Java.
-The module will be shown if any of the following conditions are met:
+The `java` module shows the currently installed version of Java. The module will be shown if any of
+the following conditions are met:
 
 - The current directory contains a `pom.xml` or `build.gradle` file
 - The current directory contains a file with the `.java`, `.class` or `.jar` extension
 
 ### Options
 
-| Variable   | Default        | Description                                              |
-| ---------- | -------------- | -------------------------------------------------------- |
-| `symbol`   | `"☕ "`         | The symbol used before displaying the version of Java.  |
-| `style`    | `"dimmed red"` | The style for the module.                               |
-| `disabled` | `false`        | Disables the `java` module.                              |
+| Variable   | Default        | Description                                            |
+| ---------- | -------------- | ------------------------------------------------------ |
+| `symbol`   | `"☕ "`        | The symbol used before displaying the version of Java. |
+| `style`    | `"dimmed red"` | The style for the module.                              |
+| `disabled` | `false`        | Disables the `java` module.                            |
 
 ### Example
 
@@ -596,11 +627,10 @@ The module will be shown if any of the following conditions are met:
 symbol = "🌟 "
 ```
 
-
 ## NodeJS
 
-The `nodejs` module shows the currently installed version of NodeJS.
-The module will be shown if any of the following conditions are met:
+The `nodejs` module shows the currently installed version of NodeJS. The module will be shown if any
+of the following conditions are met:
 
 - The current directory contains a `package.json` file
 - The current directory contains a `node_modules` directory
@@ -625,19 +655,18 @@ symbol = "🤖 "
 
 ## Package Version
 
-The `package` module is shown when the current directory is the repository for a
-package, and shows its current version. The module currently supports `npm`, `cargo`,
-and `poetry` packages.
+The `package` module is shown when the current directory is the repository for a package, and shows
+its current version. The module currently supports `npm`, `cargo`, and `poetry` packages.
 
-- **npm** – The `npm` package version is extracted from the `package.json` present
-  in the current directory
-- **cargo** – The `cargo` package version is extracted from the `Cargo.toml` present
-  in the current directory
-- **poetry** – The `poetry` package version is extracted from the `pyproject.toml` present
-  in the current directory
+- **npm** – The `npm` package version is extracted from the `package.json` present in the current
+  directory
+- **cargo** – The `cargo` package version is extracted from the `Cargo.toml` present in the current
+  directory
+- **poetry** – The `poetry` package version is extracted from the `pyproject.toml` present in the
+  current directory
 
-> ⚠️ The version being shown is that of the package whose source code is in your
-> current directory, not your package manager.
+> ⚠️ The version being shown is that of the package whose source code is in your current directory,
+> not your package manager.
 
 ### Options
 
@@ -662,9 +691,8 @@ The `python` module shows the currently installed version of Python.
 
 If `pyenv_version_name` is set to `true`, it will display the pyenv version name.
 
-Otherwise, it will display the version number from `python --version`
-and show the current Python virtual environment if one is
-activated.
+Otherwise, it will display the version number from `python --version` and show the current Python
+virtual environment if one is activated.
 
 The module will be shown if any of the following conditions are met:
 
@@ -698,8 +726,8 @@ pyenv_prefix = "foo "
 
 ## Ruby
 
-The `ruby` module shows the currently installed version of Ruby.
-The module will be shown if any of the following conditions are met:
+The `ruby` module shows the currently installed version of Ruby. The module will be shown if any of
+the following conditions are met:
 
 - The current directory contains a `Gemfile` file
 - The current directory contains a `.rb` file
@@ -723,8 +751,8 @@ symbol = "🔺 "
 
 ## Rust
 
-The `rust` module shows the currently installed version of Rust.
-The module will be shown if any of the following conditions are met:
+The `rust` module shows the currently installed version of Rust. The module will be shown if any of
+the following conditions are met:
 
 - The current directory contains a `Cargo.toml` file
 - The current directory contains a file with the `.rs` extension
@@ -748,13 +776,13 @@ symbol = "⚙️ "
 
 ## Time
 
-The `time` module shows the current **local** time.
-The `format` configuration value is used by the [`chrono`](https://crates.io/crates/chrono) crate to control how the time is displayed. Take a look [at the chrono strftime docs](https://docs.rs/chrono/0.4.7/chrono/format/strftime/index.html) to see what options are available.
+The `time` module shows the current **local** time. The `format` configuration value is used by the
+[`chrono`](https://crates.io/crates/chrono) crate to control how the time is displayed. Take a look
+[at the chrono strftime docs](https://docs.rs/chrono/0.4.7/chrono/format/strftime/index.html) to see
+what options are available.
 
-::: tip
-This module is disabled by default.
-To enable it, set `disabled` to `false` in your configuration file.
-:::
+::: tip This module is disabled by default. To enable it, set `disabled` to `false` in your
+configuration file. :::
 
 ### Options
 
@@ -765,8 +793,8 @@ To enable it, set `disabled` to `false` in your configuration file.
 | `style`    | `bold yellow` | The style for the module time                                                                                       |
 | `disabled` | `true`        | Disables the `time` module.                                                                                         |
 
-If `12hr` is `true`, then `format` defaults to `"%r"`. Otherwise, it defaults to `"%T"`.
-Manually setting `format` will override the `12hr` setting.
+If `12hr` is `true`, then `format` defaults to `"%r"`. Otherwise, it defaults to `"%T"`. Manually
+setting `format` will override the `12hr` setting.
 
 ### Example
 
@@ -780,8 +808,8 @@ format = "🕙[ %T ]"
 
 ## Username
 
-The `username` module shows active user's username.
-The module will be shown if any of the following conditions are met:
+The `username` module shows active user's username. The module will be shown if any of the following
+conditions are met:
 
 - The current user is root
 - The current user isn't the same as the one that is logged in
@@ -790,12 +818,12 @@ The module will be shown if any of the following conditions are met:
 
 ### Options
 
-| Variable     | Default         | Description                           |
-| ------------ | --------------- | ------------------------------------- |
-| `style_root` | `"bold red"`    | The style used when the user is root. |
-| `style_user` | `"bold yellow"` | The style used for non-root users.    |
-| `show_always`| `false`         | Always shows the `username` module.   |
-| `disabled`   | `false`         | Disables the `username` module.       |
+| Variable      | Default         | Description                           |
+| ------------- | --------------- | ------------------------------------- |
+| `style_root`  | `"bold red"`    | The style used when the user is root. |
+| `style_user`  | `"bold yellow"` | The style used for non-root users.    |
+| `show_always` | `false`         | Always shows the `username` module.   |
+| `disabled`    | `false`         | Disables the `username` module.       |
 
 ### Example
 
